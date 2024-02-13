@@ -80,7 +80,7 @@ stages:
             provider: 'azurerm'
             command: 'plan'
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-out'
-            commandOptions: '-var environment=$(PROD_ENV) -out $(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+            commandOptions: '-var environment=$(PROD_ENV) -out $(Pipeline.Workspace)/terraform-manifests-out/$(PROD_ENV)-$(Build.BuildId).out'
             environmentServiceNameAzureRM: 'azure-winter-project-svc-con'
         - task: TerraformTaskV4@4
           displayName: Terraform apply changes to Prod
@@ -88,6 +88,6 @@ stages:
             provider: 'azurerm'
             command: 'apply'
             workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-out'
-            commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
+            commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(PROD_ENV)-$(Build.BuildId).out'
             environmentServiceNameAzureRM: 'azure-winter-project-svc-con'
 
