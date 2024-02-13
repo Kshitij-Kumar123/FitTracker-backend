@@ -79,7 +79,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'plan'
-            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-out'
+            workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
             commandOptions: '-var environment=$(PROD_ENV) -out $(Pipeline.Workspace)/terraform-manifests-out/$(PROD_ENV)-$(Build.BuildId).out'
             environmentServiceNameAzureRM: 'azure-winter-project-svc-con'
         - task: TerraformTaskV4@4
@@ -87,7 +87,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'apply'
-            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-out'
+            workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
             commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(PROD_ENV)-$(Build.BuildId).out'
             environmentServiceNameAzureRM: 'azure-winter-project-svc-con'
 
