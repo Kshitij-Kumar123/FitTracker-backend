@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-winter-deployment
+  labels:
+    app: app1-winter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1-winter
+  template:
+    metadata:
+      labels:
+        app: app1-winter
+    spec:
+      containers:
+        - name: app1-winter
+          image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-winter-loadbalancer-service
+  labels:
+    app: app1-winter
+spec:
+  type: LoadBalancer
+  selector:
+    app: app1-winter
+  ports:
+    - port: 80
+      targetPort: 80
+
+
+
