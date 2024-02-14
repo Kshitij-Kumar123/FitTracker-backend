@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kshitijkumarakswinterprojectbackend 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kshitijkumarakswinterprojectbackend
+  template:
+    metadata:
+      labels:
+        app: kshitijkumarakswinterprojectbackend 
+    spec:
+      containers:
+        - name: kshitijkumarakswinterprojectbackend 
+          image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
+          ports:
+          - containerPort: 3000
