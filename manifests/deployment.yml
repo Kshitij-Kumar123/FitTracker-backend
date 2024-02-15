@@ -18,4 +18,4 @@ spec:
         - name: app1-winter
           image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
           ports:
-            - containerPort: 80
+            - containerPort: 70
