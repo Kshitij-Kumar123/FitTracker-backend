@@ -1,13 +1,13 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: app1-winter-cluster-ip-service
-  labels:
-    app: app1-winter
-spec:
-  type: ClusterIP
-  selector:
-    app: app1-winter
-  ports:
-    - port: 70
-      targetPort: 70
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: app1-winter-cluster-ip-service
+#   labels:
+#     app: app1-winter
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: app1-winter
+#   ports:
+#     - port: 70
+#       targetPort: 70
