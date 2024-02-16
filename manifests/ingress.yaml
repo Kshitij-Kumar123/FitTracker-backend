@@ -10,18 +10,19 @@ spec:
   rules:
     - http:
         paths:
-          - path: /page/*
-            pathType: Prefix
-            backend:
-              service:
-                name: app1-winter-cluster-ip-service
-                port: 
-                  number: 70
-          - path: /api/*
-            pathType: Prefix
-            backend:
-              service:
-                name: app1-winter-frontend-clusterip-service
-                port: 
-                  number: 80
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: app1-winter-frontend-clusterip-service
+              port:
+                number: 80
+        - path: /api/
+          pathType: Prefix
+          backend:
+            service:
+              name: app1-winter-cluster-ip-service
+              port:
+                number: 70
+
       
