@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: winter-project-ingress-service
+  #annotations:
+    #kubernetes.io/ingress.class: nginx  
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /page/*
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-winter-cluster-ip-service
+                port: 
+                  number: 70
+          - path: /api/*
+            pathType: Prefix
+            backend:
+              service:
+                name: aapp1-winter-frontend-clusterip-service
+                port: 
+                  number: 80
+      
