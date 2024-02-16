@@ -20,7 +20,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aapp1-winter-frontend-clusterip-service
+                name: app1-winter-frontend-clusterip-service
                 port: 
                   number: 80
       
