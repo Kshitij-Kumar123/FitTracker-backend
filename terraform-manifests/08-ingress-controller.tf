@@ -1,6 +1,7 @@
 resource "kubernetes_ingress" "winter_project_ingress" {
   metadata {
     name = "winter-project-ingress"
+    namespace = "prod"
   }
 
   spec {
@@ -40,6 +41,7 @@ resource "kubernetes_ingress" "winter_project_ingress" {
 resource "kubernetes_service_v1" "app1-winter" {
   metadata {
     name = "app1-winter"
+    namespace = "prod"
   }
   spec {
     selector = {
@@ -58,6 +60,7 @@ resource "kubernetes_service_v1" "app1-winter" {
 resource "kubernetes_service_v1" "app1-winter-frontend" {
   metadata {
     name = "app1-winter-frontend"
+    namespace = "prod"
   }
   spec {
     selector = {
