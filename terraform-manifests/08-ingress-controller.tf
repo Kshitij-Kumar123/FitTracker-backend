@@ -6,7 +6,7 @@ resource "kubernetes_ingress" "winter_project_ingress" {
   spec {
     backend {
       service_name = "app1-winter"
-      service_port = 60
+      service_port = 70
     }
 
     rule {
@@ -14,7 +14,7 @@ resource "kubernetes_ingress" "winter_project_ingress" {
         path {
           backend {
             service_name = "app1-winter"
-            service_port = 60
+            service_port = 70
           }
 
           path = "/api/*"
@@ -23,7 +23,7 @@ resource "kubernetes_ingress" "winter_project_ingress" {
         path {
           backend {
             service_name = "app1-winter-frontend"
-            service_port = 90
+            service_port = 80
           }
 
           path = "/page/*"
@@ -47,8 +47,8 @@ resource "kubernetes_service_v1" "app1-winter" {
     }
     session_affinity = "ClientIP"
     port {
-      port        = 60
-      target_port = 60
+      port        = 70
+      target_port = 70
     }
 
     type = "NodePort"
@@ -65,8 +65,8 @@ resource "kubernetes_service_v1" "app1-winter-frontend" {
     }
     session_affinity = "ClientIP"
     port {
-      port        = 90
-      target_port = 90
+      port        = 80
+      target_port = 80
     }
 
     type = "NodePort"

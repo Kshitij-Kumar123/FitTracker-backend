@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app1-winter-loadbalancer-service
+  name: app1-winter-cluster-ip-service
   labels:
     app: app1-winter
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: app1-winter
   ports:
