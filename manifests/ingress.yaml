@@ -17,12 +17,19 @@ spec:
               name: app1-winter-frontend-clusterip-service
               port:
                 number: 80
-        - path: /api/
+        - path: /api/frontend
           pathType: Prefix
           backend:
             service:
               name: app1-winter-cluster-ip-service
               port:
                 number: 70
+        - path: /api/
+          pathType: Prefix
+          backend:
+            service:
+              name: app1-winter-cluster-ip-service
+              port:
+                number: 70        
 
       
