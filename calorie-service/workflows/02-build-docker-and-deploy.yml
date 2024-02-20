@@ -40,8 +40,10 @@ stages:
         tags: |
           $(tag)
 
-    - upload: manifests
-      artifact: calorie-service/manifests
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(Build.ArtifactStagingDirectory)/calorie-service/manifests'
+        artifactName: manifests
 
 - stage: Deploy
   displayName: Deploy stage
