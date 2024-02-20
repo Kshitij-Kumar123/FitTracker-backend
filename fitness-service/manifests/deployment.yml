@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-winter-deployment
+  name: fitness-app-deployment
   labels:
-    app: app1-winter
+    app: fitness-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1-winter
+      app: fitness-app
   template:
     metadata:
       labels:
-        app: app1-winter
+        app: fitness-app
     spec:
       containers:
-        - name: app1-winter
-          image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
+        - name: fitness-app
+          image: azurewinterproject.azurecr.io/fitness_service_image
           ports:
-            - containerPort: 70
+            - containerPort: 60

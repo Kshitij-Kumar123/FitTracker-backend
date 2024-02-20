@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-winter-deployment
+  name: calorie-app-deployment
   labels:
-    app: app1-winter
+    app: calorie-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1-winter
+      app: calorie-app
   template:
     metadata:
       labels:
-        app: app1-winter
+        app: calorie-app
     spec:
       containers:
-        - name: app1-winter
-          image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
+        - name: calorie-app
+          image: azurewinterproject.azurecr.io/calories_service_image
           ports:
-            - containerPort: 70
+            - containerPort: 50

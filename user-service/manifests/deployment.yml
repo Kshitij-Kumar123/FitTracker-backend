@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-winter-deployment
+  name: user-app-deployment
   labels:
-    app: app1-winter
+    app: user-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1-winter
+      app: user-app
   template:
     metadata:
       labels:
-        app: app1-winter
+        app: user-app
     spec:
       containers:
-        - name: app1-winter
+        - name: user-app
           image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
           ports:
-            - containerPort: 70
+            - containerPort: 90
