@@ -40,9 +40,9 @@ stages:
         tags: |
           $(tag)
 
-    - upload: manifests
-      artifact: manifests
-      path: calorie-service/manifests
+    # - upload: manifests
+    #   artifact: manifests
+    #   path: calorie-service/manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -70,8 +70,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Build.SourcesDirectory)/manifests/deployment.yml
+                $(Build.SourcesDirectory)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
