@@ -41,8 +41,7 @@ stages:
           $(tag)
 
     - upload: manifests
-      artifact: manifests
-      path: calorie-service/manifests
+      artifact: calorie-service/manifests
 
 - stage: Deploy
   displayName: Deploy stage
