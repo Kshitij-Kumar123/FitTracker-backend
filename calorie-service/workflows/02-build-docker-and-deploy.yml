@@ -40,10 +40,10 @@ stages:
         tags: |
           $(tag)
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: '$(Build.ArtifactStagingDirectory)/calorie-service/manifests'
-        artifactName: manifests
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     pathToPublish: '$(Build.ArtifactStagingDirectory)/calorie-service/manifests'
+    #     artifactName: manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -71,8 +71,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+               $(Build.ArtifactStagingDirectory)/calorie-service/manifests/deployment.yml
+               $(Build.ArtifactStagingDirectory)/calorie-service/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
