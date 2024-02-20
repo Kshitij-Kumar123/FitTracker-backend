@@ -11,7 +11,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'f3d039b2-c0fd-4226-947a-e19ea13f417c'
-  imageRepository: 'kshitijkumarakswinterprojectbackend'
+  imageRepository: 'user_service_image'
   containerRegistry: 'azurewinterproject.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: user-app
-          image: azurewinterproject.azurecr.io/kshitijkumarakswinterprojectbackend
+          image: azurewinterproject.azurecr.io/user_service_image
           ports:
             - containerPort: 90
