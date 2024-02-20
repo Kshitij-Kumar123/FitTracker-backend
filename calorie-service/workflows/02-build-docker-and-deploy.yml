@@ -2,8 +2,7 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger: 
-- main
+trigger: none
 
 resources:
 - repo: self
@@ -72,7 +71,6 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
                 $(Pipeline.Workspace)/manifests/service.yml
-                $(Pipeline.Workspace)/manifests/ingress.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
