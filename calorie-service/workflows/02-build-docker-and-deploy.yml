@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'f3d039b2-c0fd-4226-947a-e19ea13f417c'
   imageRepository: 'calories_service_image'
   containerRegistry: 'azurewinterproject.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'calorie-service/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'azurewinterproject302013ee-auth'
 
