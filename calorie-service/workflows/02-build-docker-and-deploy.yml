@@ -39,8 +39,8 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-    - task: PublishPipelineArtifact@2
+    
+    - task: PublishPipelineArtifact@1
       inputs:
         artifact: 'manifests'
         targetPath: 'aks-winter-2024-project-backend/calorie-service/manifests'
@@ -86,6 +86,7 @@ stages:
             inputs:
               artifact: 'manifests'
               path: '$(Pipeline.Workspace)/manifests'
+          
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
