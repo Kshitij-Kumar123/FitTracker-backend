@@ -43,7 +43,7 @@ stages:
     - task: PublishPipelineArtifact@1
       inputs:
         artifact: 'manifests'
-        targetPath: 'aks-winter-2024-project-backend/calorie-service/manifests'
+        targetPath: 'manifests'
         publishLocation: 'pipeline'
 
 
