@@ -30,6 +30,6 @@ spec:
             service:
               name: calorie-app-cluster-ip-service
               port:
-                number: 50    
+                number: 50
 
       
