@@ -24,7 +24,7 @@ spec:
               name: app1-winter-cluster-ip-service
               port:
                 number: 70    
-        - path: /api/calorie
+        - path: /api-calorie
           pathType: Prefix
           backend:
             service:
