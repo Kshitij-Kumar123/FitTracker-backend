@@ -40,9 +40,11 @@ stages:
         tags: |
           $(tag)
 
-    # - upload: manifests
-    #   artifact: manifests
-    #   path: calorie-service/manifests
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifact: 'manifests'
+        path: '$(Pipeline.Workspace)/manifests'
+
 
 - stage: Deploy
   displayName: Deploy stage
@@ -74,13 +76,18 @@ stages:
               targetType: 'inline'
               script: |
                 echo $(System.DefaultWorkingDirectory)
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo $(Pipeline.Workspace)
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
               manifests: |
-                $(Build.SourcesDirectory)/manifests/deployment.yml
-                $(Build.SourcesDirectory)/manifests/service.yml
+                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
