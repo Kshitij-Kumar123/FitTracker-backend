@@ -40,10 +40,11 @@ stages:
         tags: |
           $(tag)
 
-    - task: DownloadPipelineArtifact@2
+    - task: PublishPipelineArtifact@2
       inputs:
         artifact: 'manifests'
-        path: '$(Pipeline.Workspace)/manifests'
+        targetPath: 'aks-winter-2024-project-backend/calorie-service/manifests'
+        publishLocation: 'pipeline'
 
 
 - stage: Deploy
@@ -81,6 +82,10 @@ stages:
               targetType: 'inline'
               script: |
                 echo $(Pipeline.Workspace)
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifact: 'manifests'
+              path: '$(Pipeline.Workspace)/manifests'
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
