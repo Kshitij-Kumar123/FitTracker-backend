@@ -19,5 +19,5 @@ app.use((req, res, next) => {
 
 // Test Endpoint
 app.get('/api-calorie', (req, res) => {
-    res.send('Lerling');
+    res.send('calorie service');
 });

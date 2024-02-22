@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'f3d039b2-c0fd-4226-947a-e19ea13f417c'
   imageRepository: 'fitness_service_image'
   containerRegistry: 'azurewinterproject.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'fitness-service/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'azurewinterproject302013ee-auth'
 
@@ -39,9 +39,13 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    
+    - task: PublishPipelineArtifact@1
+      inputs:
+        artifact: 'manifests'
+        targetPath: 'fitness-service/manifests'
+        publishLocation: 'pipeline'
 
-    - upload: manifests
-      artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage

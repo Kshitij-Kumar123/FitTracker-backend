@@ -18,6 +18,6 @@ app.use((req, res, next) => {
 
 
 // Test Endpoint
-app.get('/api/', (req, res) => {
-    res.send('Lerling');
+app.get('/api-fitness', (req, res) => {
+    res.send('fitness service');
 });

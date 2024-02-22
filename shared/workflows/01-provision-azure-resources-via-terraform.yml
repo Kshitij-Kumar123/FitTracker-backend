@@ -29,7 +29,7 @@ stages:
       steps:
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          targetPath: '$(System.DefaultWorkingDirectory)/shared/terraform-manifests'
           artifact: 'terraform-manifests-out'
           publishLocation: 'pipeline'
       - task: TerraformInstaller@1
@@ -39,7 +39,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/shared/terraform-manifests'
           backendServiceArm: 'azure-winter-project-svc-con'
           backendAzureRmResourceGroupName: 'terraform-storage'
           backendAzureRmStorageAccountName: 'terraformstorageholder'
@@ -49,7 +49,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/shared/terraform-manifests'
       
 - stage: AKSProdCluster
   jobs:

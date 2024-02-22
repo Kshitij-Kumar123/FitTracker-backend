@@ -1,49 +1,40 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: winter-project-ingress-service
+  name: project-ingress-service
   namespace: prod
   #annotations:
-    #kubernetes.io/ingress.class: nginx  
+  #kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: app1-winter-frontend-clusterip-service
-              port:
-                number: 80
-        - path: /api/user
-          pathType: Prefix
-          backend:
-            service:
-              name: user-app-cluster-ip-service
-              port:
-                number: 90
-        - path: /api/calorie
-          pathType: Prefix
-          backend:
-            service:
-              name: calorie-app-cluster-ip-service
-              port:
-                number: 50
-        - path: /api/fitness
-          pathType: Prefix
-          backend:
-            service:
-              name: user-app-cluster-ip-service
-              port:
-                number: 60
-        - path: /api/
-          pathType: Prefix
-          backend:
-            service:
-              name: app1-winter-cluster-ip-service
-              port:
-                number: 70        
-
-      
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-winter-frontend-clusterip-service
+                port:
+                  number: 80
+          - path: /api-user
+            pathType: Prefix
+            backend:
+              service:
+                name: user-app-cluster-ip-service
+                port:
+                  number: 80
+          - path: /api-calorie
+            pathType: Prefix
+            backend:
+              service:
+                name: calorie-app-cluster-ip-service
+                port:
+                  number: 50
+          - path: /api-fitness
+            pathType: Prefix
+            backend:
+              service:
+                name: fitness-app-cluster-ip-service
+                port:
+                  number: 60
