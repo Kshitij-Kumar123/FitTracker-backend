@@ -23,7 +23,7 @@ spec:
               service:
                 name: user-app-cluster-ip-service
                 port:
-                  number: 80
+                  number: 90
           - path: /api-calorie
             pathType: Prefix
             backend:
