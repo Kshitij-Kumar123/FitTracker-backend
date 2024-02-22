@@ -16,4 +16,4 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'winter-project-aks-prod-cluster-prod'
     namespace: 'prod'
-    manifests: '$(System.DefaultWorkingDirectory)/shared/manifests/ingress.yaml'
+    manifests: '$(System.DefaultWorkingDirectory)/shared/manifests'
