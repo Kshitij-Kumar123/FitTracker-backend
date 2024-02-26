@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const routes = require("./business_logic/routes")
+const { validateAccessToken, checkRequiredPermissions } = require('./middleware/auth0');
 
 app.use(cors());
-
+app.use(express.json())
 
 const PORT = process.env.PORT || 90;
 app.listen(PORT, () => {
@@ -16,8 +18,9 @@ app.use((req, res, next) => {
     next();
 });
 
+// Mapped Routes
+app.use('/api-user', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
 
-// Test Endpoint
-app.get('/api-user', (req, res) => {
-    res.send('user service');
+app.get('/api-bruh', (req, res) => {
+    res.send('user service hello');
 });
