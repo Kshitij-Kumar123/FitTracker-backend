@@ -1,9 +1,12 @@
+// const PORT = process.env.PORT || 60;
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const routes = require("./business_logic/routes")
+const { validateAccessToken, checkRequiredPermissions } = require('./middleware/auth0');
 
 app.use(cors());
-
+app.use(express.json())
 
 const PORT = process.env.PORT || 60;
 app.listen(PORT, () => {
@@ -16,8 +19,9 @@ app.use((req, res, next) => {
     next();
 });
 
+// Mapped Routes
+app.use('/api-fitness', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
 
-// Test Endpoint
-app.get('/api-fitness', (req, res) => {
-    res.send('fitness service');
+app.get('/api-bruh', (req, res) => {
+    res.send('fitness service hello');
 });
