@@ -21,6 +21,6 @@ app.use((req, res, next) => {
 // Mapped Routes
 app.use('/api-calorie', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
 
-app.get('/api-bruh', (req, res) => {
+app.get('/', (req, res) => {
     res.send('calorie service hello');
 });
