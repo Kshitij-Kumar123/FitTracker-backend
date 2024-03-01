@@ -2,21 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: project-ingress-service
-  namespace: prod
-  #annotations:
-  #kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
+    # - host: eapp1.myprojectsdomain.net
     - http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app1-winter-frontend-clusterip-service
-                port:
-                  number: 80
+          # - path: /home
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: app1-winter-frontend-clusterip-service
+          #       port:
+          #         number: 75
           - path: /api-user
             pathType: Prefix
             backend:
@@ -31,10 +29,10 @@ spec:
                 name: calorie-app-cluster-ip-service
                 port:
                   number: 50
-          - path: /api-fitness
-            pathType: Prefix
-            backend:
-              service:
-                name: fitness-app-cluster-ip-service
-                port:
-                  number: 60
+          # - path: /api-fitness
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: fitness-app-cluster-ip-service
+          #       port:
+          #         number: 60
