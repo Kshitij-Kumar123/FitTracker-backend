@@ -3,12 +3,13 @@ kind: Ingress
 metadata:
   name: project-ingress-service
   namespace: prod
-  #annotations:
-  #kubernetes.io/ingress.class: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: eappui.myprojectsdomain.net
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -17,6 +18,10 @@ spec:
                 name: app1-winter-frontend-clusterip-service
                 port:
                   number: 80
+
+    - host: eapp1.myprojectsdomain.net
+      http:
+        paths:
           - path: /api-user
             pathType: Prefix
             backend:
@@ -38,3 +43,10 @@ spec:
                 name: fitness-app-cluster-ip-service
                 port:
                   number: 60
+  tls:
+    - hosts:
+        - eapp1.myprojectsdomain.net
+      secretName: eapp1-project-secret
+    - hosts:
+        - eappui.myprojectsdomain.net
+      secretName: eappui-project-secret

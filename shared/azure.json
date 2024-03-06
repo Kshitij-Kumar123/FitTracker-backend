@@ -1,0 +1,7 @@
+{
+    "tenantId": "c5fb429d-342d-4e46-a1e9-5e3be2bb9138",
+    "subscriptionId": "6061132e-a725-4e7a-b5c5-c6b98aa16143",
+    "resourceGroup": "winter-project-aks-prod",
+    "useManagedIdentityExtension": true,
+    "userAssignedIdentityID": "fc2c6db4-5285-4608-9760-2092106f3523"
+}
