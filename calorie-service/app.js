@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 // app.use('/api-calorie', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
 const myDB = client.db("WinterProjectDB");
 
-app.get('/', async (req, res) => {
+app.get('/api-calorie', async (req, res) => {
     try {
         const myColl = myDB.collection("User-Collection");
         const doc = { userId: "1", name: "Neapolitan pizza", shape: "round" };
