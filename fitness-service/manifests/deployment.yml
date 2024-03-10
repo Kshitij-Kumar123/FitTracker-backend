@@ -13,9 +13,22 @@ spec:
     metadata:
       labels:
         app: fitness-app
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: workload-identity-sa
       containers:
         - name: fitness-app
           image: azurewinterproject.azurecr.io/fitness_service_image
           ports:
             - containerPort: 60
+          volumeMounts:
+            - name: secrets-store01-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store01-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azure-kvname-system-msi"
