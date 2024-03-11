@@ -1,4 +1,4 @@
-const { connectToCluster } = require("./dbHelper")
+const { connectToCluster } = require("./helpers")
 
 async function returnColl() {
     try {
@@ -33,7 +33,7 @@ exports.getRecord = async (req, res) => {
         const { id } = req.params;
         const collection = await returnColl();
         const allExercises = await collection.find({ id }).toArray();
-        res.status(200).json(allExercises);
+        res.status(200).json({ ...allExercises });
     } catch (err) {
         console.log(err);
         throw err;

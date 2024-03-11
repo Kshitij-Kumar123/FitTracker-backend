@@ -1,7 +1,10 @@
 const fs = require("fs");
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
+const express = require('express');
+const app = express();
 
+const isLocal = app.get('env') === 'development' || app.get('env') === 'test';
 
 // Read secrets mounted by Secrets CSI driver connected to AKV
 function readSecret(secretName) {
@@ -13,17 +16,14 @@ function readSecret(secretName) {
         return secretValue.trim(); // Trim to remove whitespace
     } catch (error) {
         console.error('Error reading secret:', error);
-        // throw error;
+        throw error;
     }
 }
 
 async function connectToCluster() {
     try {
-        // const isLocal = process.env.NODE_ENV === 'development';
-        // console.log("isLocal: ", isLocal);
-        // const uri = isLocal ? process.env.MONGODBURL : readSecret("mongodburl");
-        const uri = process.env.MONGODBURL;
-        console.log("uri: ", uri);
+        console.log("isLocal: ", isLocal);
+        const uri = isLocal ? process.env.MONGODBURL : readSecret("mongodburl");
         const mongoClient = new MongoClient(uri);
         console.log('Connecting to MongoDB Atlas cluster...');
         await mongoClient.connect();
@@ -38,5 +38,6 @@ async function connectToCluster() {
 
 module.exports = {
     connectToCluster,
-    readSecret
+    readSecret,
+    isLocal
 }
