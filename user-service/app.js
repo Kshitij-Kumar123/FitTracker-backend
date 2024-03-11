@@ -3,9 +3,21 @@ const cors = require('cors');
 const app = express();
 const routes = require("./business_logic/routes")
 const { validateAccessToken, checkRequiredPermissions } = require('./middleware/auth0');
+const dotenv = require('dotenv');
 
 app.use(cors());
 app.use(express.json())
+
+// Check if the server is running on localhost
+if (app.get('env') === 'development' || app.get('env') === 'test') {
+    // Code specific to local development or test environment
+    console.log('Running locally or in test environment');
+    dotenv.config({ path: '.env.development' });
+} else {
+    // Code for production or other environments
+    console.log('Not running locally');
+    dotenv.config();
+}
 
 const PORT = process.env.PORT || 90;
 app.listen(PORT, () => {
@@ -20,7 +32,3 @@ app.use((req, res, next) => {
 
 // Mapped Routes
 app.use('/api-user', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
-
-app.get('/api-bruh', (req, res) => {
-    res.send('user service hello');
-});

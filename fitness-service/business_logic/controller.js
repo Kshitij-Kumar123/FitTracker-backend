@@ -61,7 +61,7 @@ exports.updateRecord = async (req, res) => {
 };
 
 exports.deleteRecord = async (req, res) => {
-    // Implementation to delete a user
+    // Implementation to delete a user's exercise
     try {
         const collection = await returnColl();
         const { id } = req.params;
