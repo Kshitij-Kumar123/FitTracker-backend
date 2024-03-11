@@ -1,5 +1,6 @@
 /node_modules
 user-service/node_modules
 fitness-service/node_modules
+fitness-service/.env.development
 calorie-service/node_modules
 .env.development

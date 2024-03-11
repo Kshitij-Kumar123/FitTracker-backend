@@ -1,4 +1,3 @@
-// const PORT = process.env.PORT || 60;
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -8,10 +7,17 @@ const { validateAccessToken, checkRequiredPermissions } = require('./middleware/
 app.use(cors());
 app.use(express.json())
 
+
 const PORT = process.env.PORT || 60;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+
+app.listen(PORT, async () => {
+    try {
+        console.log(`Server is running on port ${PORT}`);
+    } catch (err) {
+        console.error(err)
+    }
 });
+
 
 // Middleware to log request details
 app.use((req, res, next) => {
@@ -21,7 +27,3 @@ app.use((req, res, next) => {
 
 // Mapped Routes
 app.use('/api-fitness', validateAccessToken, checkRequiredPermissions(['read:food_tracking_info']), routes)
-
-app.get('/api-bruh', (req, res) => {
-    res.send('fitness service hello');
-});
