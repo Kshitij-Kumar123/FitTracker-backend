@@ -1,11 +1,12 @@
 const { connectToCluster } = require("./helpers")
+const mongoDB = require("mongodb");
+const ObjectID = mongoDB.ObjectId;
 
 async function returnColl() {
     try {
         const client = await connectToCluster();
         const db = client.db("WinterProjectDB");
-        // TODO: get this service its own collection
-        const collection = db.collection("User-Collection");
+        const collection = db.collection("Food-Collection");
         return collection;
     } catch (err) {
         console.log(err);
@@ -17,8 +18,11 @@ exports.createRecord = async (req, res) => {
     // Implementation to create a new Record
     try {
         const collection = await returnColl();
-        const exerciseDocument = { ...req.body };
-        await collection.insertOne(exerciseDocument);
+        const document = { ...req.body };
+        const newId = new ObjectID();
+        document['id'] = newId;
+        document['_id'] = newId;
+        await collection.insertOne(document);
         res.status(201).json({
             "message": "Record inserted"
         })
