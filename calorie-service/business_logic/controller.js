@@ -37,11 +37,32 @@ exports.getRecord = async (req, res) => {
     try {
         const { id } = req.params;
         const collection = await returnColl();
-        const allExercises = await collection.find({ userId: id }).toArray();
-        res.status(200).json({ ...allExercises });
+        const records = await collection.find({ userId: id }).toArray();
+        // Check if records is not null or undefined
+        if (records) {
+            const groupedData = records
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .reduce((acc, item) => {
+                    const date = item.date.split(',')[0];
+                    if (!acc[date]) {
+                        acc[date] = {};
+                        acc[date]['items'] = [];
+                    }
+                    if (!acc[date]['totalCalories']) {
+                        acc[date]['totalCalories'] = 0;
+                    }
+                    acc[date]['items'].push(item);
+                    acc[date]['totalCalories'] += Number(item.calories )|| 0;
+                    return acc;
+                }, {});
+                console.log(groupedData);
+            res.status(200).json(groupedData);
+        } else {
+            res.status(404).json({ message: "No records found" });
+        }
     } catch (err) {
         console.log(err);
-        throw err;
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
 
