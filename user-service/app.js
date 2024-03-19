@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json())
 
 // Check if the server is running on localhost
-if (app.get('env') === 'development' || app.get('env') === 'test') {
+if (process.env.ENV === "dev") {
     // Code specific to local development or test environment
     console.log('Running locally or in test environment');
     dotenv.config({ path: '.env.development' });

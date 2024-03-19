@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-const isLocal = app.get('env') === 'development' || app.get('env') === 'test';
+const isLocal = process.env.ENV === "dev";
 
 // Read secrets mounted by Secrets CSI driver connected to AKV
 function readSecret(secretName) {
