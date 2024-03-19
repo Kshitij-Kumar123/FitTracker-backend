@@ -1,11 +1,12 @@
 const { connectToCluster } = require("./helpers")
+const mongoDB = require("mongodb");
+const ObjectID = mongoDB.ObjectId;
 
 async function returnColl() {
     try {
         const client = await connectToCluster();
         const db = client.db("WinterProjectDB");
-        // TODO: get this service its own collection
-        const collection = db.collection("User-Collection");
+        const collection = db.collection("Food-Collection");
         return collection;
     } catch (err) {
         console.log(err);
@@ -17,8 +18,11 @@ exports.createRecord = async (req, res) => {
     // Implementation to create a new Record
     try {
         const collection = await returnColl();
-        const exerciseDocument = { ...req.body };
-        await collection.insertOne(exerciseDocument);
+        const document = { ...req.body };
+        const newId = new ObjectID();
+        document['id'] = newId;
+        document['_id'] = newId;
+        await collection.insertOne(document);
         res.status(201).json({
             "message": "Record inserted"
         })
@@ -33,11 +37,32 @@ exports.getRecord = async (req, res) => {
     try {
         const { id } = req.params;
         const collection = await returnColl();
-        const allExercises = await collection.find({ userId: id }).toArray();
-        res.status(200).json({ ...allExercises });
+        const records = await collection.find({ userId: id }).toArray();
+        // Check if records is not null or undefined
+        if (records) {
+            const groupedData = records
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .reduce((acc, item) => {
+                    const date = item.date.split(',')[0];
+                    if (!acc[date]) {
+                        acc[date] = {};
+                        acc[date]['items'] = [];
+                    }
+                    if (!acc[date]['totalCalories']) {
+                        acc[date]['totalCalories'] = 0;
+                    }
+                    acc[date]['items'].push(item);
+                    acc[date]['totalCalories'] += Number(item.calories )|| 0;
+                    return acc;
+                }, {});
+                console.log(groupedData);
+            res.status(200).json(groupedData);
+        } else {
+            res.status(404).json({ message: "No records found" });
+        }
     } catch (err) {
         console.log(err);
-        throw err;
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
 
