@@ -60,6 +60,26 @@ exports.updateRecord = async (req, res) => {
     }
 };
 
+exports.addWeightTracking = async (req, res) => {
+    try {
+        const collection = await returnColl();
+        const { id } = req.params;
+        const updatedUserInfo = await collection.updateOne(
+            { userId: id },
+            { $push: { weightTracking: req.body } } // Append data to weightTracking array
+        );
+
+        res.status(200).json({
+            message: "Record updated",
+            updated: updatedUserInfo
+        });
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+
 exports.deleteRecord = async (req, res) => {
     // Implementation to delete a user
     try {

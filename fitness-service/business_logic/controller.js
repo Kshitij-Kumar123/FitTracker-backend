@@ -60,7 +60,6 @@ exports.getRecord = async (req, res) => {
     // Implementation to get Record details of the user's exercise
     try {
         const { id } = req.params;
-        console.log(id)
         const collection = await returnColl();
         const allExercises = await collection.find({ id }).toArray();
         res.status(200).json({ ...allExercises });
@@ -73,7 +72,6 @@ exports.getRecord = async (req, res) => {
 exports.getUserRecord = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(id)
         const collection = await returnColl();
         const activities = await collection.find({ userId: id }).toArray();
         // Categorize activities by date
@@ -98,9 +96,6 @@ exports.getUserRecord = async (req, res) => {
             }, {});
         });
 
-        console.log(activitiesByDateAndCategory);
-
-
         const twoWeeksAgo = new Date();
         twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
 
@@ -121,8 +116,6 @@ exports.getUserRecord = async (req, res) => {
             week1: {},
             week2: {}
         };
-
-        console.log(lastTwoWeeksActivities);
 
         Object.keys(lastTwoWeeksActivities).forEach(date => {
             const categories = lastTwoWeeksActivities[date];
@@ -146,8 +139,6 @@ exports.getUserRecord = async (req, res) => {
                     }
 
                     activities.forEach(activity => {
-                        console.log(activity.duration);
-                        console.log(activity.distance);
                         // Check if activity.duration and activity.distance are valid numbers
                         if (typeof activity.duration === 'number' && !isNaN(activity.duration)) {
                             stats[whichWeek]['Cardio']['moveMins'] = (stats[whichWeek]['Cardio']['moveMins'] || 0) + activity.duration;
@@ -200,22 +191,12 @@ exports.getUserRecord = async (req, res) => {
             // Initialize improvement stats for the category
             improvementStats[category] = {};
 
-            console.log("inside", category);
-
             // Iterate over workouts in each category
             Object.keys(stats.week2[category]).forEach(workout => {
-                console.log("inside workout: ", workout);
                 // Check if there are stats for the same workout in both weeks
                 if (stats.week1[category] && stats.week1[category][workout] && stats.week2[category] && stats.week2[category][workout]) {
-                    console.log(" stats.week1[category]: ", stats.week1[category]);
-                    console.log(" stats.week2[category]: ", stats.week2[category]);
-
                     const week1Stats = stats.week1[category][workout];
                     const week2Stats = stats.week2[category][workout];
-
-                    console.log("week1Stats: ", week1Stats);
-                    console.log("week2Stats: ", week2Stats);
-
                     // Iterate over each metric in the workout stats
                     Object.keys(week2Stats).forEach(metric => {
                         // Check if the metric exists in both weeks and if there's improvement
@@ -236,7 +217,6 @@ exports.getUserRecord = async (req, res) => {
         });
 
 
-        console.log(improvementStats);
 
         res.status(200).json({
             activities: activitiesByDateAndCategory,

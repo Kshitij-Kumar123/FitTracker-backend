@@ -22,7 +22,6 @@ function readSecret(secretName) {
 
 async function connectToCluster() {
     try {
-        console.log("isLocal: ", isLocal);
         const uri = isLocal ? process.env.MONGODBURL : readSecret("mongodburl");
         const mongoClient = new MongoClient(uri);
         console.log('Connecting to MongoDB Atlas cluster...');
