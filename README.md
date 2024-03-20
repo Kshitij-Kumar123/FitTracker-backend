@@ -14,8 +14,23 @@ Inspired by personal fitness goals and a desire to enhance DevOps skills, FitTra
 ## Notable Achievements
 FitTracker leverages modern DevOps tools and practices for safe and seamless deployment.
 
+## Technologies used
 
-### Technologies Used
+- Azure Kubernetes Service
+
+- Azure Devops
+
+- Terraform
+
+- Azure DNS
+
+- Azure Cosmos DB
+
+- Express.js
+
+- React.js
+<!-- 
+
 - ![Azure Kubernetes Service](https://img.shields.io/badge/Hosting-Azure%20Kubernetes%20Service-orange?logo=azure-devops)
 
 - ![Azure DevOps](https://img.shields.io/badge/CI%2FCD-Azure%20DevOps-blue?logo=azure-pipelines)
@@ -28,10 +43,16 @@ FitTracker leverages modern DevOps tools and practices for safe and seamless dep
 
 - ![Azure Cosmos DB](https://img.shields.io/badge/Backend-Azure%20Cosmos%20DB-green?logo=microsoft-azure)
 
-- ![Auth0](https://img.shields.io/badge/Authentication-Auth0-yellow?logo=auth0)
+- ![Auth0](https://img.shields.io/badge/Authentication-Auth0-yellow?logo=auth0) 
+
+-->
 
 
-Add architecture image here
+
+### Architecture
+
+![Project Architecture](<Project Architecture.png>)
+
 
 ### Azure Kubernetes Services with Docker
 Utilizing containerization technology via Docker, FitTracker's microservice architecture guarantees both portability and scalability. By leveraging Azure Kubernetes Services (AKS), I configured all deployments to operate in a cost-effective manner by constraining container scaling.
@@ -90,6 +111,12 @@ Employing infrastructure-as-code principles, FitTracker provisions essential res
 
 To try out FitTracker, simply [click here](https://eappui.myprojectsdomain.net/) to access the application. Developers interested in contributing to the project are welcome to contact me and create a pull request with their ideas and/or bug fixes. However, all pull requests will have to be approved by me.
 
+
+Adding screenshots of the project later.
+
+## Additional Notes
+
+Here is the [frontend repository](https://github.com/Kshitij-Kumar123/aks-winter-2024-project-frontend).
 
 ## Conclusion
 
