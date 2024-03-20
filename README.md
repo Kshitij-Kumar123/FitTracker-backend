@@ -116,7 +116,7 @@ Adding screenshots of the project later.
 
 ## Additional Notes
 
-Here is the [frontend repository](https://github.com/Kshitij-Kumar123/aks-winter-2024-project-frontend).
+Here is the [frontend repository](https://github.com/Kshitij-Kumar123/aks-winter-2024-project-backend).
 
 ## Conclusion
 
